@@ -5,8 +5,9 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "build": "rollup ./lib/lib.js --file ./lib.js --format iife --plugin @rollup/plugin-node-resolve --plugin @rollup/plugin-commonjs --context this",
-    "start": "node index.js"
+    "build": "node build.js",
+    "watch": "node build.js --watch",
+    "start": "node build.js --serve"
   },
   "keywords": [],
   "author": "",
@@ -14,9 +15,19 @@
   "dependencies": {
     "@atproto/api": "*",
     "@atproto/repo": "*",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.14",
+    "@mui/material": "^5.15.14",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.2",
-    "rollup": "^4.0.2",
-    "fuse.js": "^6.6.2"
+    "ag-grid-community": "^31.2.0",
+    "ag-grid-react": "^31.2.0",
+    "coldsky": "^0.1.10",
+    "esbuild": "^0.20.2",
+    "fuse.js": "^6.6.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup": "^4.0.2"
   }
 }
