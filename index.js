@@ -18,6 +18,12 @@ function receipts() {
       document.title = 'BlueSky пошук по історії';
     }
 
+    function placeholderText() {
+      return overrideLang === 'ua' ?
+        'Пошук активності акаунтів BluSki, користуйтеся для розшуку чи перевірки людини.' :
+        'Searching BlueSky activity of a user: to verify their identity, and to find their receipts.';
+    }
+
     function initSearchPageDOM() {
       const host = elem('div', {
         id: 'receiptsHost',
@@ -37,11 +43,7 @@ function receipts() {
 <div class=closeLink></div>
 <div class=resultsPane>
 <div style="padding: 1em;">
-  ${
-          overrideLang === 'ua' ? 
-          'Пошук активності акаунтів BluSki, користуйтеся для розшуку чи перевірки людини.' :
-          'Searching BlueSky activity of a user: to verify their identity, and to find their receipts.'
-  }
+  ${placeholderText()}
   
 </div>
 </div>
@@ -2113,7 +2115,12 @@ function receipts() {
       dom.closeLink.style.display = 'block';
       dom.closeLink.onclick = () => {
         history.pushState({}, '', 'index.html');
-        dom.resultsPane.textContent = 'Pick an account to search history.';
+        dom.resultsPane.textContent = '';
+        elem('div', {
+          parent: dom.resultsPane,
+          padding: '1em',
+          textContent: placeholderText()
+        });
         dom.bio.textContent = '';
         displaySearchPage();
       };
