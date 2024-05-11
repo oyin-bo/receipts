@@ -565,7 +565,7 @@ function receipts() {
   }
 
   .titlePane {
-    grid-row: 1 / 4;
+    grid-row: 1;
     grid-column: 1;
     min-height: 13em;
   }
