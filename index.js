@@ -11,7 +11,7 @@ function receipts() {
 
     let overrideLang =
       /ua/i.test(location.host || '') || /ua/i.test(window.name || '') ||
-      (navigator.languages || []).some(lang => /ru/i.test(lang || '')) ? 'ua' :
+      (navigator.languages || []).some(lang => /ru|be|ua/i.test(lang || '')) ? 'ua' :
         undefined;
     
     if (overrideLang === 'ua') {
@@ -53,9 +53,9 @@ function receipts() {
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: none;
+  overflow: hidden;
   display: grid;
-  grid-template-rows: 1fr auto auto auto 1fr;
+  grid-template-rows: 1fr auto auto 1fr;
   grid-template-columns: 1fr 1fr;
 }
 
@@ -68,22 +68,32 @@ function receipts() {
 }
 
 .titlePane {
-  grid-row: 2;
+  grid-row: 1;
   grid-column: 1;
+  position: relative;
+  align-items: end;
 }
 
 .titlePane h2 {
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 0.9;
+  overflow-wrap: anywhere;
+
   font-size: 400%;
   text-align: center;
-  padding-bottom: 0;
-  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0.2em;
+  margin: 0;
   background: linear-gradient(to top, white -0.25em, transparent 0.5em);
   text-shadow: 1px 1px 13px white, 1px 1px 2px #fffffff2, -1px -1px 2px #ffffffe6;
 }
 
 .searchPane {
-  grid-row: 3;
-  grid-row: 3;
+  grid-row: 2;
   grid-column: 1;
   position: relative;
   padding: 2em;
@@ -158,15 +168,15 @@ function receipts() {
 }
 
 .banner {
-  grid-row-start: 1;
-  grid-row-end: 4;
+  grid-row: 1;
   grid-column: 1;
   background: no-repeat center center;
   background-size: cover;
 }
 
 .statsPane {
-  grid-row: 4;
+  grid-row: 3;
+  grid-column: 1;
   background: white;
 
   position: sticky;
@@ -208,6 +218,8 @@ function receipts() {
 }
 
 .bio {
+  grid-row: 4;
+  grid-column: 1;
   padding: 0;
   margin: 0;
   padding-left: 0.5em;
@@ -496,6 +508,7 @@ function receipts() {
 @media (max-width: 800px) {
   .resultsPane .search-panel {
     top: 5em;
+    z-index: 3;
   }
 }
 
@@ -550,8 +563,9 @@ function receipts() {
   }
 
   .titlePane {
-    grid-row: 2;
+    grid-row: 1 / 4;
     grid-column: 1;
+    min-height: 13em;
   }
 
   .searchPane {
@@ -566,6 +580,7 @@ function receipts() {
     grid-row: 4;
     grid-column: 1;
     padding-bottom: 0.5em;
+    z-index: 3;
   }
 
   .resultsPane {
